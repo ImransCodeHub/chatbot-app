@@ -3,8 +3,7 @@ import axios from "axios";
 import OpenAI from "openai";
 
 
-const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
-
+const apiKey = process.env.OPENAI_API_KEY; // Won't work because no .env file in frontend
 
 const createAssistant = async () => {
   const headers = {
@@ -21,6 +20,7 @@ const createAssistant = async () => {
 
   try {
     const response = await axios.post("https://api.openai.com/v1/assistants", body, { headers });
+    console.log("Assistant created:", response.data);
     return response.data;
   } catch (error) {
     console.error("Error creating assistant:", error);
@@ -109,7 +109,7 @@ const CreateAssistantComponent = () => {
 
   return (
     <div>
-      <h1>Create Assistant</h1>
+      <h1>Create Assistant tester 0.1</h1>
       <input type="text" placeholder="Ask me anything" value={question} onChange={handleInputChange} />
       <button onClick={handleStartConversation}>Start Conversation</button>
     </div>
